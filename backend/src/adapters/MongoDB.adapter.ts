@@ -1,7 +1,6 @@
 import mongoose, { Connection } from "mongoose";
 
 const connectToMongoDB=async():Promise<Connection>=>{
-
     const MONGODB_URL=process.env.MONGODB_URL;
 
     if(!MONGODB_URL){

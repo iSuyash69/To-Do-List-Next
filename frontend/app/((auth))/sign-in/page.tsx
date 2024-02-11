@@ -5,6 +5,8 @@ import { useState } from "react";
 import loginGoogle from "@/assets/images/loginGoogle.png"
 import loginFacebook from "@/assets/images/loginFacebook.png"
 import authBg from "@/assets/images/authBg.jpeg"
+import axios from "axios";
+import { toast } from "sonner";
 
 interface FormData{
     email:string,
@@ -27,9 +29,32 @@ const SignIn=()=>{
         setFormData({...formData,[name]:value});
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>):void=> {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>):Promise<void>=> {
         e.preventDefault();
         console.log(formData);
+        setError("");
+        setLoading(true);
+        try{
+            const res=await axios.post("http://localhost:8080/user/sign-in",formData);
+            if(res){
+                // setError("");
+                setLoading(false);
+                console.log(res.data);
+                return;
+                // return router.push("/");
+            }
+
+            console.log("Something went wrong");
+            setLoading(false);
+            // setError("Something went wrong");
+            toast.error("Something went wrong");
+        }
+        catch(error){
+            console.log(error);
+            setLoading(false);
+            // setError("Something went wrong");
+            toast.error("Something went wrong");
+        }
     };
 
     return(
