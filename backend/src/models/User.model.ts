@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import User from "../types/User.types/User.types";
+import User from "../types/User.types/UserModel.types";
 
 const userSchema:Schema<User>=new Schema({
     name:{
@@ -20,7 +20,7 @@ const userSchema:Schema<User>=new Schema({
     },
     role:{
         type:String,
-        enum:["admin","user","visitor"],    
+        enum:["admin","user"],    
     },
 },{timestamps:true});
 
