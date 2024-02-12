@@ -7,7 +7,8 @@ const router:Router=express.Router();
 router.post("/sign-up",userController.userSignUp);
 router.post("/sign-in",userController.userSignIn);
 router.get("/profile",isUser,(req,res)=>{
-    res.json({success:true});
+    const {user}=req.body;
+    res.json({success:true,user:user});
 })
 
 export default router;
