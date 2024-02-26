@@ -2,10 +2,11 @@
 import AddTask from "@/components/addTask/AddTask";
 import bg from "@/assets/images/bg.jpg";
 import { useRouter } from "next/navigation";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 const Page=()=>{
 
-    const router=useRouter();
+    const router:AppRouterInstance=useRouter();
 
     return(
         <div style={{backgroundImage:`url(${bg.src})`}} className="w-full relative bg-center bg-cover bg-no-repeat min-h-screen ">

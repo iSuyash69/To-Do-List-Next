@@ -7,6 +7,7 @@ import loginFacebook from "@/assets/images/loginFacebook.png"
 import authBg from "@/assets/images/authBg.jpeg"
 import axios from "axios";
 import { toast } from "sonner";
+import { BASE_URL } from "@/utils/constants";
 
 interface FormData{
     email:string,
@@ -34,8 +35,9 @@ const SignIn=()=>{
         console.log(formData);
         setError("");
         setLoading(true);
+
         try{
-            const res=await axios.post("http://localhost:8080/user/sign-in",formData);
+            const res=await axios.post(`${BASE_URL}/user/sign-in`,formData);
             if(res){
                 // setError("");
                 setLoading(false);
@@ -55,6 +57,7 @@ const SignIn=()=>{
             // setError("Something went wrong");
             toast.error("Something went wrong");
         }
+
     };
 
     return(
